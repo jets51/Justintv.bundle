@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<site site="http://www.justin.tv/*" plugin=".*\.swf" initialState="loading" version="1.0">
+<site site="http://www.justin.tv/.*" plugin=".*\.swf" initialState="loading" version="1.0">
     <setCookie domain=".justin.tv" path="/" name="mature_allowed" secure="false" value="true"/>
 	<crop x="0" y="0" width="0" height="-30" />
 	<!-- PLAYING -->
