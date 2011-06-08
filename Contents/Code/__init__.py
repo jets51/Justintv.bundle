@@ -24,6 +24,7 @@ def Start():
     MediaContainer.viewGroup = "InfoList"
     DirectoryItem.thumb = R(ICON)
 
+####################################################################################################
 def VideoMainMenu():
     dir = MediaContainer(noCache=True)
     dir.Append(Function(DirectoryItem(CategoriesMenu, title="Categories", summary="Browse live streams by category")))
@@ -33,6 +34,7 @@ def VideoMainMenu():
     dir.Append(PrefsItem(title="Preferences...", thumb=R("icon-prefs.png")))
     return dir
 
+####################################################################################################
 def CategoriesMenu(sender):
     dir = MediaContainer(viewGroup="List", title2="Categories")
     categories = {'featured': 'Featured', 'social': 'Social', 'entertainment':'Entertainment', 'gaming':'Gaming', 'sports':'Sports', 'news':'News & Events', 'animals':'Animals', 'science_tech':'Science & Technology', 'educational':'Educational', 'other':'Other'}
@@ -41,6 +43,7 @@ def CategoriesMenu(sender):
         dir.Append(Function(DirectoryItem(ChannelMenu, title=categories[category]) ,url="%s?category=%s" % (JTV_LIST_STREAMS, category)))
     return dir
 
+####################################################################################################
 def ChannelMenu(sender, url=None):
     dir = MediaContainer(title2=sender.itemTitle)
     json = JSON.ObjectFromURL(url, cacheTime=CACHE_INTERVAL)
@@ -55,6 +58,7 @@ def ChannelMenu(sender, url=None):
             pass
     return dir
 
+####################################################################################################
 def SearchResults(sender, query=None):
     dir = MediaContainer()
     json = JSON.ObjectFromURL(JTV_LIST_STREAMS, cacheTime=CACHE_INTERVAL)
@@ -77,6 +81,7 @@ def SearchResults(sender, query=None):
             "No streams were found that match your query."
         )
 
+####################################################################################################
 # The Favourites menu 
 def Favourites(sender):
     dir = MediaContainer()
