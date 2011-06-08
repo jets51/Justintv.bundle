@@ -25,17 +25,18 @@ def Start():
     DirectoryItem.thumb = R(ICON)
 
 def VideoMainMenu():
-    dir = MediaContainer()
+    dir = MediaContainer(noCache=True)
     dir.Append(Function(DirectoryItem(CategoriesMenu, title="Categories", summary="Browse live streams by category")))
-    dir.Append(Function(InputDirectoryItem(SearchResults, title="Search...", summary="Search for a stream", thumb=R("icon-search.png"))))
-    dir.Append(Function(DirectoryItem(Favourites, tite="Favourites", summary="Favourite Streams", thumb=R("icon-favorite.png"))))
-    dir.Append(PrefsItem("Preferences...", thumb=R("icon-prefs.png")))
+    dir.Append(Function(InputDirectoryItem(SearchResults, title="Search...", prompt="Search for a stream", thumb=R("icon-search.png"))))
+    if Prefs['username']:
+        dir.Append(Function(DirectoryItem(Favourites, title="Favourites", summary="Favourite Streams", thumb=R("icon-favorite.png"))))
+    dir.Append(PrefsItem(title="Preferences...", thumb=R("icon-prefs.png")))
     return dir
 
 def CategoriesMenu(sender):
     dir = MediaContainer(viewGroup="List", title2="Categories")
-    categories = {'featured': 'Featured', '': 'All', 'social': 'Social', 'entertainment':'Entertainment', 'gaming':'Gaming', 'sports':'Sports', 'news':'News & Events', 'animals':'Animals', 'science_tech':'Science & Technology', 'educational':'Educational', 'other':'Other'}
-    orderedCategories = ['','featured','social','entertainment','gaming','sports','news','animals','science_tech','educational','other']
+    categories = {'featured': 'Featured', 'social': 'Social', 'entertainment':'Entertainment', 'gaming':'Gaming', 'sports':'Sports', 'news':'News & Events', 'animals':'Animals', 'science_tech':'Science & Technology', 'educational':'Educational', 'other':'Other'}
+    orderedCategories = ['featured','social','entertainment','gaming','sports','news','animals','science_tech','educational','other']
     for category in orderedCategories:
         dir.Append(Function(DirectoryItem(ChannelMenu, title=categories[category]) ,url="%s?category=%s" % (JTV_LIST_STREAMS, category)))
     return dir
