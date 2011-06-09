@@ -40,7 +40,7 @@ def CategoriesMenu(sender):
     categories = {'featured': 'Featured', 'social': 'Social', 'entertainment':'Entertainment', 'gaming':'Gaming', 'sports':'Sports', 'news':'News & Events', 'animals':'Animals', 'science_tech':'Science & Technology', 'educational':'Educational', 'other':'Other'}
     orderedCategories = ['featured','social','entertainment','gaming','sports','news','animals','science_tech','educational','other']
     for category in orderedCategories:
-        dir.Append(Function(DirectoryItem(ChannelMenu, title=categories[category]) ,url="%s?category=%s" % (JTV_LIST_STREAMS, category)))
+        dir.Append(Function(DirectoryItem(ChannelMenu, title=categories[category]), url="%s?category=%s&limit=25" % (JTV_LIST_STREAMS, category)))
     return dir
 
 ####################################################################################################
