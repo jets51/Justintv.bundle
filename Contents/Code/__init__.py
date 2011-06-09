@@ -61,7 +61,7 @@ def ChannelMenu(sender, url=None):
 ####################################################################################################
 def SearchResults(sender, query=None):
     dir = MediaContainer()
-    json = JSON.ObjectFromURL(JTV_LIST_STREAMS, cacheTime=CACHE_INTERVAL)
+    json = JSON.ObjectFromURL(JTV_LIST_STREAMS + '?limit=25', cacheTime=CACHE_INTERVAL)
 
     for stream in json:
         try:
